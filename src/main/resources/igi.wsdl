@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="RealStateService" targetNamespace="http://impl.service.g7.ws.inmuebles.dridco.com/" xmlns:ns1="http://service.g7.ws.inmuebles.dridco.com/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.service.g7.ws.inmuebles.dridco.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://www.zonaprop.com.ar/zp/webservice/realState?wsdl=RealEstateService.wsdl" namespace="http://service.g7.ws.inmuebles.dridco.com/">
+    </wsdl:import>
+  <wsdl:binding name="RealStateServiceSoapBinding" type="ns1:RealEstateService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="publicar">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="publicar">
+        <soap:header message="ns1:publicar" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publicar" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publicar" part="password" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publicar" part="dryRun" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publicarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPublishedRealEstates">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getPublishedRealEstates">
+        <soap:header message="ns1:getPublishedRealEstates" part="user" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getPublishedRealEstates" part="provider" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getPublishedRealEstates" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPublishedRealEstatesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarAviso">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="consultarAviso">
+        <soap:header message="ns1:consultarAviso" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarAviso" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarAviso" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="consultarAvisoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposInmueblesPorUbicacion">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="consultarTiposInmueblesPorUbicacion">
+        <soap:header message="ns1:consultarTiposInmueblesPorUbicacion" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarTiposInmueblesPorUbicacion" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarTiposInmueblesPorUbicacion" part="password" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarTiposInmueblesPorUbicacion" part="pais" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="consultarTiposInmueblesPorUbicacionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRealEstateContacts">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRealEstateContacts">
+        <soap:header message="ns1:getRealEstateContacts" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getRealEstateContacts" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getRealEstateContacts" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRealEstateContactsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publicarAviso">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="publicarAviso">
+        <soap:header message="ns1:publicarAviso" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publicarAviso" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publicarAviso" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publicarAvisoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="finalizar">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="finalizar">
+        <soap:header message="ns1:finalizar" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:finalizar" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:finalizar" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="finalizarResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publicarInternal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="publicarInternal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publicarInternalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarUbicaciones">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="consultarUbicaciones">
+        <soap:header message="ns1:consultarUbicaciones" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarUbicaciones" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarUbicaciones" part="password" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarUbicaciones" part="pais" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="consultarUbicacionesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="finalizarInternal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="finalizarInternal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="finalizarInternalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarPublicaciones">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="consultarPublicaciones">
+        <soap:header message="ns1:consultarPublicaciones" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarPublicaciones" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:consultarPublicaciones" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="consultarPublicacionesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishProject">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="publishProject">
+        <soap:header message="ns1:publishProject" part="user" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publishProject" part="provider" use="literal">
+        </soap:header>
+        <soap:header message="ns1:publishProject" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishProjectResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endRealEstatePost">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="endRealEstatePost">
+        <soap:header message="ns1:endRealEstatePost" part="user" use="literal">
+        </soap:header>
+        <soap:header message="ns1:endRealEstatePost" part="provider" use="literal">
+        </soap:header>
+        <soap:header message="ns1:endRealEstatePost" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="endRealEstatePostResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getContext">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getContext">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getContextResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationProjectTypes">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getLocationProjectTypes">
+        <soap:header message="ns1:getLocationProjectTypes" part="user" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getLocationProjectTypes" part="provider" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getLocationProjectTypes" part="password" use="literal">
+        </soap:header>
+        <soap:header message="ns1:getLocationProjectTypes" part="country" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getLocationProjectTypesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarAviso">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="modificarAviso">
+        <soap:header message="ns1:modificarAviso" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:modificarAviso" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:modificarAviso" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="modificarAvisoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="finalizarAviso">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="finalizarAviso">
+        <soap:header message="ns1:finalizarAviso" part="usuario" use="literal">
+        </soap:header>
+        <soap:header message="ns1:finalizarAviso" part="proveedor" use="literal">
+        </soap:header>
+        <soap:header message="ns1:finalizarAviso" part="password" use="literal">
+        </soap:header>
+        <soap:body parts="parameters" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="finalizarAvisoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RealStateService">
+    <wsdl:port binding="tns:RealStateServiceSoapBinding" name="RealEstateServiceImplPort">
+      <soap:address location="http://www.zonaprop.com.ar/zp/webservice/realState" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
