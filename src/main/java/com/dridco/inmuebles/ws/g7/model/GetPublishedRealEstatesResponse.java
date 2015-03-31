@@ -1,6 +1,7 @@
 package com.dridco.inmuebles.ws.g7.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,8 +9,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author aruiz@dridco.com (Alejandro Lopez Ruiz)
@@ -26,7 +25,7 @@ public class GetPublishedRealEstatesResponse implements Serializable {
 
     public GetPublishedRealEstatesResponse(ConsultarPublicacionResponse publicacionResponse) {
         List<PublicationPair> publicaciones = publicacionResponse.getPublicaciones();
-        this.realEstateIdsList = Lists.newArrayListWithCapacity(publicaciones.size());
+        this.realEstateIdsList = new ArrayList<>(publicaciones.size());
         for (PublicationPair publicationPair : publicaciones) {
             this.realEstateIdsList.add(new RealEstateIds(publicationPair));
         }

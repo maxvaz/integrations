@@ -17,7 +17,7 @@ import com.dridco.inmuebles.ws.g7.model.WebServiceIntegerResponse;
 import com.dridco.inmuebles.ws.g7.model.WebServiceResponse;
 import com.dridco.inmuebles.ws.g7.model.Zona;
 import com.dridco.inmuebles.zz.ProviderUserPermission;
-import com.navent.ws.security.RequiredAccessPermissions;
+import com.navent.integrations.igi.ws.security.RequiredAccessPermissions;
 
 /**
  * @author pfenoglio

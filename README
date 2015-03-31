@@ -1,2 +1,9 @@
 - base para usuarios
 - administrador de usuarios
+
+
+::consultarAviso
+- chequear respuesta cuando no se encuentra el post
+- por que en POST_PROVDRS_IMPRT_EVNTS la referencia es a providerId y no a providerUserId????
+- se puede evitar el parametro password?
+- revisar los tipos de los ids en la firma de los servicios, long vs string

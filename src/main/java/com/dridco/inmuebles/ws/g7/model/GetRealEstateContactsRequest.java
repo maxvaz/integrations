@@ -1,7 +1,5 @@
 package com.dridco.inmuebles.ws.g7.model;
 
-import static com.google.common.base.Throwables.propagate;
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -105,7 +103,7 @@ public class GetRealEstateContactsRequest implements Serializable {
         try {
             return this.requestDateFormat.parse(dateString);
         } catch (ParseException e) {
-            throw propagate(e);
+            throw new RuntimeException(e);
         }
     }
 
