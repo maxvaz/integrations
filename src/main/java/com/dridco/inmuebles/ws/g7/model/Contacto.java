@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author aruiz@dridco.com (Alejandro Lopez Ruiz)
  */
 @XmlType(name = "contacto", propOrder = { "nombre", "apellido", "email", "telefono1", "telefono2", "horarioContacto",
-        "emailAdicionales" })
+"emailAdicionales" })
 public class Contacto extends IgiContact {
     private static final long serialVersionUID = 2L;
     @XmlElement(required = true, type = String.class, nillable = false)
@@ -103,11 +103,4 @@ public class Contacto extends IgiContact {
         return getEmailAdicionales();
     }
 
-    @Override
-    public void adaptContactPhone() {
-        this.telefono1.setNumeroTelefono(this.telefono1.adaptPhone());
-        if (this.telefono2 != null) {
-            this.telefono2.setNumeroTelefono(this.telefono2.adaptPhone());
-        }
-    }
 }

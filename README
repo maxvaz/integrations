@@ -1,9 +1,21 @@
 - base para usuarios
 - administrador de usuarios
+- migracion de usuarios
+- seguridad, autentication y autorizacion
 
+=== Providers IGI ===
+- existen grupos de usuarios con nombre y passowrd
+- cada usuario del grupo se puede deshabilitar
+- cada usuario del grupo se mapean con un usuario en zp
+- los grupos tienen asociado un tipo de servicio con descripcion, precio, tax, moneda, estado, cupo de avisos simples y cupo de emprendimientos
+- los usuarios de un grupo tienen una restriccion por si pueden publicar avisos simples o emprendimientos
 
-::consultarAviso
-- chequear respuesta cuando no se encuentra el post
-- por que en POST_PROVDRS_IMPRT_EVNTS la referencia es a providerId y no a providerUserId????
+=== Mapeos de posts ===
+- para algunos servicios, las publicaciones se manejan a traves de un id que es externo a zp, por lo cual hay que mantener la asociacion entre ese id y el interno a la hora de consultar, finalizar, etc. 
+
+=== Otros ===
 - se puede evitar el parametro password?
 - revisar los tipos de los ids en la firma de los servicios, long vs string
+
+=== Revisar que este en navplat === 
+- validaciones de mails, urls, etc en el subtitulo?? (PostSubtitlePreProcessor)

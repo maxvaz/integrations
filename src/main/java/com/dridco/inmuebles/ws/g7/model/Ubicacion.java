@@ -14,20 +14,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
         "coordenadaLatitud", "coordenadaLongitud", "idUbicacion", "otraUbicacion", "tipoCalle", "nombreUrbanizacion",
         "mostrar", "direccion", "codigoPostal" })
 public class Ubicacion extends IgiLocation {
+
     private static final long serialVersionUID = 1L;
-    /**
-     * Max Street name Length allowed in IGI Publicator
-     */
-    // TODO Este debería desaparecer ya que en la base de datos su
-    // longitud es de 40 pero es referenciado desde diferentes
-    // lugares.
-    // Deberia ser reemplazado por MAX_ADDRESS_LENGTH.
-    public static final int MAX_STREET_NAME_LENGTH = 50;
-
-    public static final int MAX_STREET_NUMBER_LENGTH = 10;
-
-    public static final Integer MAX_ADDRESS_LENGTH = 40;
-    public static final int MAX_OTHER_LOCATION_LENGTH = 40;
 
     @XmlElement(required = true, type = String.class, nillable = false)
     private String nombreCalle;
@@ -59,12 +47,6 @@ public class Ubicacion extends IgiLocation {
     private String direccion;
     @XmlElement(required = false, type = String.class, nillable = false)
     private String codigoPostal;
-
-    /*
-     * TODO: Tener en cuenta que el atributo mostrar solo soporta valores true/false. Si se le manda cualquier otro
-     * valor (i.e:: 0/1 o si/no) puede tener un comportamiento erratico. En caso de hacerse
-     * "publico este tag, se deberia agregar un validator"
-     */
 
     @Override
     public String getAlturaCalle() {
@@ -153,14 +135,6 @@ public class Ubicacion extends IgiLocation {
 
     public void setNombreCalle(String nombreCalle) {
         this.nombreCalle = nombreCalle;
-    }
-
-    public void setNormalizedNombreCalle(String streetName) {
-        if (streetName.length() > MAX_STREET_NAME_LENGTH) {
-            this.nombreCalle = streetName.substring(0, MAX_STREET_NAME_LENGTH);
-        } else {
-            this.nombreCalle = streetName;
-        }
     }
 
     public void setOtraUbicacion(String otraUbicacion) {

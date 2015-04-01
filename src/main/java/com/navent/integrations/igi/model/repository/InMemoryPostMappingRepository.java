@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.model;
+package com.navent.integrations.igi.model.repository;
 
 import static java.util.Optional.ofNullable;
 
@@ -15,16 +15,20 @@ public class InMemoryPostMappingRepository implements PostMappingRepository {
 
     public InMemoryPostMappingRepository() {
         mappings = new HashMap<String, Long>();
-        mappings.put(key("999999", 8L), 99999L);
+        mappings.put(key(8L, "234", "999999"), 99999L);
     }
 
-    private String key(String postId, Long providerId) {
-        return postId + "" + providerId;
+    private String key(Long providerId, String providerUserId, String postId) {
+        return providerId + "" + postId;
     }
 
     @Override
-    public Optional<Long> mapToNavPlatId(String postId, Long providerId) {
-        return ofNullable(mappings.get(key(postId, providerId)));
+    public Optional<Long> mapToNavPlatId(Long providerId, String providerUserId, String postId) {
+        return ofNullable(mappings.get(key(providerId, providerUserId, postId)));
     }
 
+    @Override
+    public void addMapping(Long providerId, String providerUserId, String providerPostId, Long navPlatPostId) {
+        mappings.put(key(providerId, providerUserId, providerPostId), navPlatPostId);
+    }
 }

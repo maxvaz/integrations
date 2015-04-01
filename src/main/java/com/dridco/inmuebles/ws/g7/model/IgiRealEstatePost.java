@@ -44,8 +44,6 @@ public abstract class IgiRealEstatePost implements Serializable {
 
     public abstract void setTipoPropiedad(String tipoPropiedad);
 
-    // TODO: comment other setters?
-
     public abstract void setUrlImagenes(List<String> urlImagenes);
 
     public abstract String getPais();

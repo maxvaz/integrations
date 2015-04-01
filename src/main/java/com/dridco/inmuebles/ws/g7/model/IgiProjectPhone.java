@@ -54,9 +54,4 @@ public class IgiProjectPhone extends IgiPhone {
         return getNumber();
     }
 
-    @Override
-    public String adaptPhone() {
-        return this.number.replace(SPACE_SEPARATOR, EMPTY);
-    }
-
 }

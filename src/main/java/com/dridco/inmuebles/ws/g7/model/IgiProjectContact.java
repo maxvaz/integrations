@@ -111,12 +111,4 @@ public class IgiProjectContact extends IgiContact {
         this.additionalEmails = additionalEmails;
     }
 
-    @Override
-    public void adaptContactPhone() {
-        this.phone1.setNumber(this.phone1.adaptPhone());
-        if (this.phone2 != null) {
-            this.phone2.setNumber(this.phone2.adaptPhone());
-        }
-    }
-
 }

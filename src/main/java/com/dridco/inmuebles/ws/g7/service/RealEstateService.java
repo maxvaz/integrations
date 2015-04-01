@@ -1,5 +1,8 @@
 package com.dridco.inmuebles.ws.g7.service;
 
+import static com.navent.integrations.igi.ws.security.ProviderUserPermission.PUBLISH_BP_POST;
+import static com.navent.integrations.igi.ws.security.ProviderUserPermission.PUBLISH_POST;
+
 import java.util.List;
 
 import javax.jws.WebParam;
@@ -16,14 +19,13 @@ import com.dridco.inmuebles.ws.g7.model.IgiProjectPost;
 import com.dridco.inmuebles.ws.g7.model.WebServiceIntegerResponse;
 import com.dridco.inmuebles.ws.g7.model.WebServiceResponse;
 import com.dridco.inmuebles.ws.g7.model.Zona;
-import com.dridco.inmuebles.zz.ProviderUserPermission;
 import com.navent.integrations.igi.ws.security.RequiredAccessPermissions;
 
 /**
  * @author pfenoglio
  * @author aruiz@dridco.com (Alejandro Lopez Ruiz)
  */
-@WebService()
+@WebService
 public interface RealEstateService {
 
     String NAMESPACE = "http://service.g7.ws.inmuebles.dridco.com/";
@@ -44,21 +46,21 @@ public interface RealEstateService {
             @WebParam(name = "password", header = true) String password, @WebParam(name = "nroAviso") Integer id);
 
     @WebResult(name = "WebServiceResponse")
-    @RequiredAccessPermissions(permissions = ProviderUserPermission.PUBLISH_POST)
+    @RequiredAccessPermissions(permissions = PUBLISH_POST)
     WebServiceResponse modificarAviso(@WebParam(name = ES_USER_PARAM, header = true) String usuario,
             @WebParam(name = ES_PROVIDER_PARAM, header = true) Long proveedor,
             @WebParam(name = "password", header = true) String password,
             @WebParam(name = "aviso", targetNamespace = NAMESPACE) Aviso aviso);
 
     @WebResult(name = "WebServiceIntegerResponse")
-    @RequiredAccessPermissions(permissions = ProviderUserPermission.PUBLISH_POST)
+    @RequiredAccessPermissions(permissions = PUBLISH_POST)
     WebServiceIntegerResponse publicarAviso(@WebParam(name = ES_USER_PARAM, header = true) String usuario,
             @WebParam(name = ES_PROVIDER_PARAM, header = true) Long proveedor,
             @WebParam(name = "password", header = true) String password,
             @WebParam(name = "aviso", targetNamespace = NAMESPACE) Aviso aviso);
 
     @WebResult(name = "WebServiceIntegerResponse")
-    @RequiredAccessPermissions(permissions = ProviderUserPermission.PUBLISH_POST)
+    @RequiredAccessPermissions(permissions = PUBLISH_POST)
     WebServiceResponse publicar(@WebParam(name = ES_USER_PARAM, header = true) String usuario,
             @WebParam(name = ES_PROVIDER_PARAM, header = true) Long proveedor,
             @WebParam(name = "password", header = true) String password,
@@ -94,7 +96,7 @@ public interface RealEstateService {
             @WebParam(name = "country", header = true) String country, @WebParam(name = "locationId") Long locationId);
 
     @WebResult(name = "WebServiceIntegerResponse")
-    @RequiredAccessPermissions(permissions = ProviderUserPermission.PUBLISH_BP_POST)
+    @RequiredAccessPermissions(permissions = PUBLISH_BP_POST)
     WebServiceResponse publishProject(@WebParam(name = EN_USER_PARAM, header = true) String user,
             @WebParam(name = EN_PROVIDER_PARAM, header = true) Long provider,
             @WebParam(name = "password", header = true) String password,

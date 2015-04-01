@@ -1,27 +1,25 @@
 package com.navent.integrations.igi.ws.security;
 
+public class PostProvider {
 
-/**
- * @author esalvador , aobara
- **/
-public class ProviderPost {
     public static final Long TIQUE_IMOVEIS_PROVIDER_ID = 122L;
     static final int DEFAULT_POST_PROVIDER_ID_AS_INT = 1;
     static final int M2_POST_PROVIDER_ID_AS_INT = 101;
 
-    public Object getPassword() {
-        // TODO Auto-generated method stub
-        return null;
+    private final Long id;
+    private final String password;
+
+    public PostProvider(Long id, String password) {
+        this.id = id;
+        this.password = password;
     }
 
-    public Object getCategory() {
-        // TODO Auto-generated method stub
-        return null;
+    public boolean checkPassword(String passwordToCheck) {
+        return password.equals(passwordToCheck);
     }
 
-    public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+    public Long getId() {
+        return id;
     }
 
 }

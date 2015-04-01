@@ -15,8 +15,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlTransient
 public abstract class IgiContact implements Serializable {
-    /* TODO: esto debería ir a otra clase ya que tambien lo usan algunos command */
-    public static final int ADDITIONAL_EMAIL_LIMIT = 10;
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -37,7 +35,5 @@ public abstract class IgiContact implements Serializable {
     public abstract IgiPhone getIgiPhone2();
 
     public abstract List<String> getAdditionalEmails();
-
-    public abstract void adaptContactPhone();
 
 }

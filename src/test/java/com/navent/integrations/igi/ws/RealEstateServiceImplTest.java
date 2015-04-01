@@ -16,9 +16,9 @@ import java.util.Optional;
 import org.junit.Test;
 
 import com.dridco.inmuebles.ws.g7.model.Aviso;
-import com.navent.integrations.igi.model.InMemoryProviderUserRepository;
-import com.navent.integrations.igi.model.PostMappingRepository;
-import com.navent.integrations.igi.model.ProviderUserRepository;
+import com.navent.integrations.igi.model.repository.InMemoryProviderUserRepository;
+import com.navent.integrations.igi.model.repository.PostMappingRepository;
+import com.navent.integrations.igi.model.repository.ProviderUserRepository;
 import com.navent.integrations.igi.navplat.NavPlatClient;
 import com.navent.integrations.igi.navplat.NavPlatPost;
 import com.navent.integrations.igi.navplat.adapters.AvisoAdapter;
@@ -37,8 +37,8 @@ public class RealEstateServiceImplTest {
         navPlatCLient = mock(NavPlatClient.class);
         avisoAdapter = mock(AvisoAdapter.class);
 
-        realEstateServiceImpl = new RealEstateServiceImpl(null, null, null, null, null, null, null, null, null,
-                navPlatCLient, avisoAdapter, null, null, null, postMappingRepository, providerUserRepository);
+        realEstateServiceImpl = new RealEstateServiceImpl(navPlatCLient, avisoAdapter, postMappingRepository,
+                providerUserRepository);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -59,7 +59,7 @@ public class RealEstateServiceImplTest {
         String ANY_NUMERIC_STRING_ID = "1234";
 
         when(providerUserRepository.mapToNavPlatId(anyLong(), anyString())).thenReturn(of(ANY_ID));
-        when(postMappingRepository.mapToNavPlatId(anyString(), anyLong())).thenReturn(of(ANY_ID));
+        when(postMappingRepository.mapToNavPlatId(anyLong(), anyString(), anyString())).thenReturn(of(ANY_ID));
         when(navPlatCLient.get(ANY_ID, ANY_ID)).thenReturn(empty());
 
         Aviso aviso = realEstateServiceImpl.consultarAviso(ANY_NUMERIC_STRING_ID, ANY_ID, null, ANY_NUMERIC_STRING_ID);
@@ -75,7 +75,8 @@ public class RealEstateServiceImplTest {
         Long postId = 5L;
 
         when(providerUserRepository.mapToNavPlatId(eq(providerId), eq(providerUserId))).thenReturn(of(userId));
-        when(postMappingRepository.mapToNavPlatId(eq(providerPostId), eq(providerId))).thenReturn(of(postId));
+        when(postMappingRepository.mapToNavPlatId(eq(providerId), eq(providerUserId), eq(providerPostId))).thenReturn(
+                of(postId));
 
         Optional<NavPlatPost> navPlatPost = of(navPlatPost());
         Aviso aviso = aviso();
@@ -94,7 +95,7 @@ public class RealEstateServiceImplTest {
         Long userId = 4L;
 
         when(providerUserRepository.mapToNavPlatId(eq(providerId), eq(providerUserId))).thenReturn(of(userId));
-        when(postMappingRepository.mapToNavPlatId(anyString(), anyLong())).thenReturn(empty());
+        when(postMappingRepository.mapToNavPlatId(anyLong(), anyString(), anyString())).thenReturn(empty());
 
         Optional<NavPlatPost> navPlatPost = of(navPlatPost());
         Aviso aviso = aviso();
@@ -114,7 +115,8 @@ public class RealEstateServiceImplTest {
         Long postIdFromMapping = 5L;
 
         when(providerUserRepository.mapToNavPlatId(eq(providerId), eq(providerUserId))).thenReturn(of(userId));
-        when(postMappingRepository.mapToNavPlatId(anyString(), anyLong())).thenReturn(of(postIdFromMapping));
+        when(postMappingRepository.mapToNavPlatId(anyLong(), anyString(), anyString())).thenReturn(
+                of(postIdFromMapping));
 
         Optional<NavPlatPost> navPlatPost = of(navPlatPost());
         Optional<NavPlatPost> otherNavPlatPost = of(navPlatPost());

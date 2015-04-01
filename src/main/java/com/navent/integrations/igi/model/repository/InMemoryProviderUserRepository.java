@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.model;
+package com.navent.integrations.igi.model.repository;
 
 import static java.util.Optional.ofNullable;
 
@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.navent.integrations.igi.ws.security.ProviderUser;
+
 @Repository
 public class InMemoryProviderUserRepository implements ProviderUserRepository {
 
@@ -15,7 +17,6 @@ public class InMemoryProviderUserRepository implements ProviderUserRepository {
 
     public InMemoryProviderUserRepository() {
         mappings = new HashMap<String, Long>();
-        mappings.put(key(8L, "5874251"), 99999L);
     }
 
     @Override
@@ -23,8 +24,18 @@ public class InMemoryProviderUserRepository implements ProviderUserRepository {
         return ofNullable(mappings.get(key(providerId, providerUserId)));
     }
 
+    @Override
+    public void addMapping(Long providerId, String providerUserId, Long navPlatPostId) {
+        mappings.put(key(providerId, providerUserId), navPlatPostId);
+    }
+
     private String key(Long providerId, String providerUserId) {
         return providerId + "" + providerUserId;
+    }
+
+    @Override
+    public Optional<ProviderUser> get(Long providerId, String user) {
+        throw new UnsupportedOperationException();
     }
 
 }

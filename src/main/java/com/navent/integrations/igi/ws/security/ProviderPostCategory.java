@@ -10,7 +10,7 @@ public enum ProviderPostCategory {
 
     public static ProviderPostCategory getByProviderId(Long id) {
         switch (id.intValue()) {
-        case ProviderPost.DEFAULT_POST_PROVIDER_ID_AS_INT:
+        case PostProvider.DEFAULT_POST_PROVIDER_ID_AS_INT:
         case 2:
         case 3:
         case 4:
@@ -34,7 +34,7 @@ public enum ProviderPostCategory {
         case 100:
             /* MERCADOI */
             return EXTERNAL;
-        case ProviderPost.M2_POST_PROVIDER_ID_AS_INT:
+        case PostProvider.M2_POST_PROVIDER_ID_AS_INT:
             /* ROBOT COLOMBIA */
             return EXTERNAL;
         default:

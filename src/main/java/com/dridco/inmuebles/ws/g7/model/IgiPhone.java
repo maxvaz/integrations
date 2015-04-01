@@ -17,16 +17,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @XmlTransient
 public abstract class IgiPhone implements Serializable {
     private static final long serialVersionUID = 1L;
-    protected static final String SPACE_SEPARATOR = " ";
-    protected static final String EMPTY = "";
 
     public abstract String getCodigoArea();
 
     public abstract String getExtension();
 
     public abstract String getNumeroTelefono();
-
-    public abstract String adaptPhone();
 
     @Override
     public String toString() {

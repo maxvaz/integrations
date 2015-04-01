@@ -46,9 +46,4 @@ public class Telefono extends IgiPhone {
         this.numeroTelefono = numeroTelefono;
     }
 
-    @Override
-    public String adaptPhone() {
-        return this.numeroTelefono.replace(SPACE_SEPARATOR, EMPTY);
-    }
-
 }
