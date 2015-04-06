@@ -15,7 +15,6 @@ public class InMemoryPostMappingRepository implements PostMappingRepository {
 
     public InMemoryPostMappingRepository() {
         mappings = new HashMap<String, Long>();
-        mappings.put(key(8L, "234", "999999"), 99999L);
     }
 
     private String key(Long providerId, String providerUserId, String postId) {

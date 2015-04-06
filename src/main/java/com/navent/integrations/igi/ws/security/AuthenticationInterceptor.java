@@ -13,13 +13,13 @@ import com.navent.integrations.igi.model.repository.ProviderUserRepository;
 import com.navent.integrations.igi.ws.AuthenticationMessage;
 
 @Component
-public class AuthenticationInInterceptor extends AbstractPhaseInterceptor<Message> {
+public class AuthenticationInterceptor extends AbstractPhaseInterceptor<Message> {
 
     private final PostProviderRepository postProviderRepository;
     private final ProviderUserRepository providerUserRepository;
 
     @Autowired
-    public AuthenticationInInterceptor(PostProviderRepository postProviderRepository,
+    public AuthenticationInterceptor(PostProviderRepository postProviderRepository,
             ProviderUserRepository providerUserRepository) {
         super(PRE_PROTOCOL);
         this.postProviderRepository = postProviderRepository;
@@ -30,7 +30,7 @@ public class AuthenticationInInterceptor extends AbstractPhaseInterceptor<Messag
     public void handleMessage(Message nativeMessage) throws Fault {
         AuthenticationMessage message = new AuthenticationMessage(nativeMessage);
 
-        PostProvider postProvider = postProviderRepository.get(message.getProviderId()).orElseThrow(
+        PostProviderGroup postProvider = postProviderRepository.get(message.getProviderId()).orElseThrow(
                 InvalidAuthenticationException::new);
 
         if (!postProvider.checkPassword(message.getPassword())) {

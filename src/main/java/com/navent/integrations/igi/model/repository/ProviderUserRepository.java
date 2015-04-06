@@ -2,7 +2,7 @@ package com.navent.integrations.igi.model.repository;
 
 import java.util.Optional;
 
-import com.navent.integrations.igi.ws.security.ProviderUser;
+import com.navent.integrations.igi.ws.security.PostProviderUser;
 
 public interface ProviderUserRepository {
 
@@ -10,7 +10,7 @@ public interface ProviderUserRepository {
 
     void addMapping(Long postProviderId, String providerUserId, Long navPlatPostId);
 
-    Optional<ProviderUser> get(Long postProviderId, String user);
+    Optional<PostProviderUser> get(Long postProviderId, String user);
     // if (!ProviderUserState.ACTIVE.equals(providerUser.getImportStats())) {
     // throw new RuntimeException("Provider user " + user + " is disabled.");
     // }

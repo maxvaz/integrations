@@ -28,11 +28,6 @@ import com.navent.integrations.igi.navplat.NavPlatClient;
 import com.navent.integrations.igi.navplat.NavPlatPost;
 import com.navent.integrations.igi.navplat.adapters.AvisoAdapter;
 
-/**
- * @author aobara
- * @author aruiz@dridco.com (Alejandro Lopez Ruiz)
- * @author Matias Fernandez (mfernandez@dridco.com)
- */
 @WebService(endpointInterface = "com.dridco.inmuebles.ws.g7.service.RealEstateService", serviceName = "RealStateService")
 @Service("realEstateServiceImpl")
 public class RealEstateServiceImpl implements RealEstateService {

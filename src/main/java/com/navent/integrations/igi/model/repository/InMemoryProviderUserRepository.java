@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.navent.integrations.igi.ws.security.ProviderUser;
+import com.navent.integrations.igi.ws.security.PostProviderUser;
 
 @Repository
 public class InMemoryProviderUserRepository implements ProviderUserRepository {
@@ -34,7 +34,7 @@ public class InMemoryProviderUserRepository implements ProviderUserRepository {
     }
 
     @Override
-    public Optional<ProviderUser> get(Long providerId, String user) {
+    public Optional<PostProviderUser> get(Long providerId, String user) {
         throw new UnsupportedOperationException();
     }
 

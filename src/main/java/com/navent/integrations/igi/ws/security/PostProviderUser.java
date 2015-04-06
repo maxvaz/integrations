@@ -1,5 +1,5 @@
 package com.navent.integrations.igi.ws.security;
 
-public class ProviderUser {
+public class PostProviderUser {
 
 }

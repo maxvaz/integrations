@@ -1,17 +1,17 @@
 package com.navent.integrations.igi.ws.security;
 
-public class PostProvider {
+import java.util.Set;
 
-    public static final Long TIQUE_IMOVEIS_PROVIDER_ID = 122L;
-    static final int DEFAULT_POST_PROVIDER_ID_AS_INT = 1;
-    static final int M2_POST_PROVIDER_ID_AS_INT = 101;
+public class PostProviderGroup {
 
     private final Long id;
     private final String password;
+    private final Set<PostProviderUser> users;
 
-    public PostProvider(Long id, String password) {
+    public PostProviderGroup(Long id, String password, Set<PostProviderUser> users) {
         this.id = id;
         this.password = password;
+        this.users = users;
     }
 
     public boolean checkPassword(String passwordToCheck) {
@@ -20,6 +20,10 @@ public class PostProvider {
 
     public Long getId() {
         return id;
+    }
+
+    public Set<PostProviderUser> getUsers() {
+        return users;
     }
 
 }

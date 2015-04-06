@@ -21,7 +21,6 @@ public class ProviderUserController {
     @RequestMapping(value = "/providers/{providerId}/users/${providerUserId}", method = PUT)
     public void a(Long providerId, String providerUserId, Long navPlatUserId) {
         providerUserRepository.addMapping(providerId, providerUserId, navPlatUserId);
-        // mappings.put(key(8L, "5874251"), 99999L);
     }
 
 }

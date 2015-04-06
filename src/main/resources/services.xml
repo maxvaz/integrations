@@ -26,7 +26,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 			</bean>
 		</jaxws:implementor>
 		<jaxws:inInterceptors>
-			<ref bean="authenticationInInterceptor" />
+			<ref bean="authenticationInterceptor" />
 		</jaxws:inInterceptors>
 	</jaxws:endpoint>
 
