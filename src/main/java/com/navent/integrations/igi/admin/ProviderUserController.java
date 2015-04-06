@@ -18,7 +18,7 @@ public class ProviderUserController {
         this.providerUserRepository = providerUserRepository;
     }
 
-    @RequestMapping(value = "/providers/{providerId}/users/${providerUserId}", method = PUT)
+    @RequestMapping(value = "/providers/{providerId}/users/{providerUserId}", method = PUT)
     public void a(Long providerId, String providerUserId, Long navPlatUserId) {
         providerUserRepository.addMapping(providerId, providerUserId, navPlatUserId);
     }

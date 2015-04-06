@@ -1,7 +1,6 @@
 package com.dridco.inmuebles.ws.g7.model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,7 +34,6 @@ public class GetRealEstateContactsRequest implements Serializable {
 
     @XmlElement(required = false, type = String.class, nillable = false)
     private String adId;
-    private final DateFormat requestDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * El formato esperado para la fecha es dd/MM/yyyy (dia/mes/ano)
@@ -101,7 +99,7 @@ public class GetRealEstateContactsRequest implements Serializable {
 
     public Date parse(String dateString) {
         try {
-            return this.requestDateFormat.parse(dateString);
+            return new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
