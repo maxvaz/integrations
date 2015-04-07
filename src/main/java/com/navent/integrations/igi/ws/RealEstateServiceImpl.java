@@ -1,10 +1,12 @@
 package com.navent.integrations.igi.ws;
 
-import static java.lang.Long.valueOf;
-import static org.springframework.util.Assert.hasText;
+import static com.dridco.inmuebles.ws.g7.model.WebServiceResponse.ok;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.StreamSupport.stream;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import javax.jws.WebService;
 
@@ -18,10 +20,12 @@ import com.dridco.inmuebles.ws.g7.model.GetPostContactsResponse;
 import com.dridco.inmuebles.ws.g7.model.GetPublishedRealEstatesResponse;
 import com.dridco.inmuebles.ws.g7.model.GetRealEstateContactsRequest;
 import com.dridco.inmuebles.ws.g7.model.IgiProjectPost;
+import com.dridco.inmuebles.ws.g7.model.PublicationPair;
 import com.dridco.inmuebles.ws.g7.model.WebServiceIntegerResponse;
 import com.dridco.inmuebles.ws.g7.model.WebServiceResponse;
 import com.dridco.inmuebles.ws.g7.model.Zona;
 import com.dridco.inmuebles.ws.g7.service.RealEstateService;
+import com.navent.integrations.igi.model.repository.PostMapping;
 import com.navent.integrations.igi.model.repository.PostMappingRepository;
 import com.navent.integrations.igi.model.repository.ProviderUserRepository;
 import com.navent.integrations.igi.navplat.NavPlatClient;
@@ -48,14 +52,12 @@ public class RealEstateServiceImpl implements RealEstateService {
 
     @Override
     public Aviso consultarAviso(String providerUserId, Long providerId, String unused2, String providerPostId) {
-        hasText(providerUserId);
-        hasText(providerPostId);
 
         Long navPlatUserId = providerUserRepository.mapToNavPlatId(providerId, providerUserId).orElseThrow(
                 IllegalStateException::new);
 
         Long navPlatPostId = postMappingRepository.mapToNavPlatId(providerId, providerUserId, providerPostId).orElse(
-                valueOf(providerPostId));
+                Long.valueOf(providerPostId));
 
         Optional<NavPlatPost> navPlatPost = navPlatClient.get(navPlatPostId, navPlatUserId);
 
@@ -63,76 +65,75 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
-    public ConsultarPublicacionResponse consultarPublicaciones(String usuario, Long proveedor, String password) {
+    public ConsultarPublicacionResponse consultarPublicaciones(String providerUserId, Long providerId, String password) {
+        Iterable<PostMapping> postMapping = postMappingRepository.getAllMappings(providerId, providerUserId);
+        List<PublicationPair> pairs = stream(postMapping.spliterator(), false).map(toPublicationPair()).collect(
+                toList());
+        return new ConsultarPublicacionResponse(pairs);
+    }
+
+    @Override
+    public List<String> consultarTiposInmueblesPorUbicacion(String providerUserId, Long providerId, String password,
+            String country, Integer locationId) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public List<String> consultarTiposInmueblesPorUbicacion(String usuario, Long proveedor, String password,
-            String pais, Integer idUbicacion) {
+    public List<Zona> consultarUbicaciones(String providerUserId, Long providerId, String password, String country) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public List<Zona> consultarUbicaciones(String usuario, Long proveedor, String password, String pais) {
+    public WebServiceResponse endRealEstatePost(String providerUserId, Long providerId, String password,
+            String providerPostId) {
+        Long navPlatPostId = postMappingRepository.mapToNavPlatId(providerId, providerUserId, providerPostId).orElse(
+                Long.valueOf(providerPostId));
+        navPlatClient.delete(navPlatPostId);
+        return ok();
+    }
+
+    @Override
+    public WebServiceResponse finalizar(String providerUserId, Long providerId, String password, String providerPostId) {
+        return endRealEstatePost(providerUserId, providerId, password, providerPostId);
+    }
+
+    @Override
+    public WebServiceResponse finalizarAviso(String providerUserId, Long providerId, String password,
+            Integer providerPostId) {
+        return endRealEstatePost(providerUserId, providerId, password, providerPostId.toString());
+    }
+
+    @Override
+    public GetLocationProjectTypesResponse getLocationProjectTypes(String providerUserId, Long providerId,
+            String password, String country, Long locationId) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public WebServiceResponse endRealEstatePost(String user, Long provider, String password, String externalId) {
+    public GetPublishedRealEstatesResponse getPublishedRealEstates(String providerUserId, Long providerId,
+            String password) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public WebServiceResponse finalizar(String usuario, Long proveedor, String password, String providerId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public WebServiceResponse finalizarAviso(String usuario, Long proveedor, String password, Integer id) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public WebServiceResponse finalizarInternal(String usuario, Long proveedor, String password, String avisoProveedorId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public GetLocationProjectTypesResponse getLocationProjectTypes(String user, Long provider, String password,
-            String country, Long locationId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public GetPublishedRealEstatesResponse getPublishedRealEstates(String user, Long provider, String password) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public GetPostContactsResponse getRealEstateContacts(String user, Long provider, String password,
+    public GetPostContactsResponse getRealEstateContacts(String providerUserId, Long providerId, String password,
             GetRealEstateContactsRequest getRealEstateContactsRequest) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public WebServiceResponse modificarAviso(String usuario, Long proveedor, String password, Aviso aviso) {
+    public WebServiceResponse modificarAviso(String providerUserId, Long providerId, String password, Aviso aviso) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public WebServiceResponse publicar(String usuario, Long proveedor, String password, Boolean dryRun, Aviso aviso) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public WebServiceIntegerResponse publicarAviso(String usuario, Long proveedor, String password, Aviso aviso) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public WebServiceResponse publicarInternal(String usuario, Long proveedor, String password, Boolean dryRun,
+    public WebServiceResponse publicar(String providerUserId, Long providerId, String password, Boolean dryRun,
             Aviso aviso) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public WebServiceIntegerResponse publicarAviso(String providerUserId, Long providerId, String password, Aviso aviso) {
         throw new UnsupportedOperationException();
     }
 
@@ -140,6 +141,11 @@ public class RealEstateServiceImpl implements RealEstateService {
     public WebServiceResponse publishProject(String providerUserId, Long providerId, String password,
             IgiProjectPost igiProjectPost) {
         throw new UnsupportedOperationException();
+    }
+
+    private Function<PostMapping, PublicationPair> toPublicationPair() {
+        return (postMapping) -> new PublicationPair(postMapping.getNavPlatId().toString(), postMapping
+                .getProviderPostId().toString());
     }
 
 }

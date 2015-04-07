@@ -16,6 +16,14 @@ public class PublicationPair implements Serializable {
     @XmlElement(type = String.class)
     private String idEntidadIgi;
 
+    public PublicationPair() {
+    }
+
+    public PublicationPair(String idAvisoZonaProp, String idEntidadIgi) {
+        this.idAvisoZonaProp = idAvisoZonaProp;
+        this.idEntidadIgi = idEntidadIgi;
+    }
+
     public String getIdAvisoZonaProp() {
         return this.idAvisoZonaProp;
     }

@@ -18,6 +18,13 @@ public class ConsultarPublicacionResponse implements Serializable {
     @XmlElement(type = PublicationPair.class)
     private List<PublicationPair> publicaciones;
 
+    public ConsultarPublicacionResponse() {
+    }
+
+    public ConsultarPublicacionResponse(List<PublicationPair> publicationPairs) {
+        publicaciones = publicationPairs;
+    }
+
     public List<PublicationPair> getPublicaciones() {
         return this.publicaciones;
     }

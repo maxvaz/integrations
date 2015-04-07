@@ -30,4 +30,9 @@ public class InMemoryPostMappingRepository implements PostMappingRepository {
     public void addMapping(Long providerId, String providerUserId, String providerPostId, Long navPlatPostId) {
         mappings.put(key(providerId, providerUserId, providerPostId), navPlatPostId);
     }
+
+    @Override
+    public Iterable<PostMapping> getAllMappings(Long providerId, String providerUserId) {
+        return null;
+    }
 }

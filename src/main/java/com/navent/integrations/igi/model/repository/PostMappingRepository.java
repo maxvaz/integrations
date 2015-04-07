@@ -4,8 +4,10 @@ import java.util.Optional;
 
 public interface PostMappingRepository {
 
-    public Optional<Long> mapToNavPlatId(Long providerId, String providerUserId, String providerPostId);
+    Optional<Long> mapToNavPlatId(Long providerId, String providerUserId, String providerPostId);
 
-    public void addMapping(Long providerId, String providerUserId, String providerPostId, Long navPlatPostId);
+    void addMapping(Long providerId, String providerUserId, String providerPostId, Long navPlatPostId);
+
+    Iterable<PostMapping> getAllMappings(Long providerId, String providerUserId);
 
 }

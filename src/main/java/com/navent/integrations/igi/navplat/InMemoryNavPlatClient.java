@@ -22,4 +22,9 @@ public class InMemoryNavPlatClient implements NavPlatClient {
         return ofNullable(posts.get(postId));
     }
 
+    @Override
+    public void delete(Long postId) {
+        posts.remove(postId);
+    }
+
 }

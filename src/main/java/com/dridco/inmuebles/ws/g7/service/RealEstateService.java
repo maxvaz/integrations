@@ -120,8 +120,4 @@ public interface RealEstateService {
             @WebParam(name = "password", header = true) String password,
             @WebParam(name = "getRealEstateContactsRequest", targetNamespace = NAMESPACE) GetRealEstateContactsRequest getRealEstateContactsRequest);
 
-    WebServiceResponse publicarInternal(String usuario, Long proveedor, String password, Boolean dryRun, Aviso aviso);
-
-    WebServiceResponse finalizarInternal(String usuario, Long proveedor, String password, String avisoProveedorId);
-
 }
