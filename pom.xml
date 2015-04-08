@@ -137,6 +137,11 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.2.201409121644</version>
+				<configuration>
+					<excludes>
+						<exclude>com/dridco/inmuebles/ws/g7/**/*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
