@@ -8,6 +8,7 @@ import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.navent.integrations.igi.model.PostProviderGroup;
 import com.navent.integrations.igi.model.PostProviderGroupRepository;
 import com.navent.integrations.igi.model.ProviderUserRepository;
 import com.navent.integrations.igi.ws.AuthenticationMessage;

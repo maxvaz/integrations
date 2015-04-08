@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.ws.security;
+package com.navent.integrations.igi.model;
 
 import java.util.HashSet;
 import java.util.Set;

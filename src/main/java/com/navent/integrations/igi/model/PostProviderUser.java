@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.ws.security;
+package com.navent.integrations.igi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

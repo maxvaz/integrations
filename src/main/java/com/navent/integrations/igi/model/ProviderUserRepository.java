@@ -2,8 +2,6 @@ package com.navent.integrations.igi.model;
 
 import java.util.Optional;
 
-import com.navent.integrations.igi.ws.security.PostProviderUser;
-
 public interface ProviderUserRepository {
 
     Optional<Long> mapToNavPlatId(Long postProviderId, String providerUserId);

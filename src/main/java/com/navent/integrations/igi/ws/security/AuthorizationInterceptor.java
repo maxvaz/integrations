@@ -17,9 +17,9 @@ public class AuthorizationInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(final MethodInvocation invocation) throws Throwable {
 
-        if (!invocation.getMethod().isAnnotationPresent(RequiredAccessPermissions.class)) {
-            return invocation.proceed();
-        }
+        // if (!invocation.getMethod().isAnnotationPresent(RequiredAccessPermissions.class)) {
+        // return invocation.proceed();
+        // }
 
         // ProviderUser providerUser = this.context.getProviderUser();
         //

@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.navent.integrations.igi.model.PostProviderGroup;
 import com.navent.integrations.igi.model.PostProviderGroupRepository;
 import com.navent.integrations.igi.validation.InvalidRequestException;
-import com.navent.integrations.igi.ws.security.PostProviderGroup;
 
 @RestController
 @RequestMapping("/api/postProviderGroups")
