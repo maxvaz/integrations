@@ -23,7 +23,7 @@ public class AvisoAdapter {
         NavPlatPost navPlatPost = optionalNavPlatPost.get();
 
         Aviso aviso = new Aviso();
-        aviso.setIdAviso(navPlatPost.getId());
+        // aviso.setIdAviso(navPlatPost.getId());
         aviso.setSubtitulo(navPlatPost.getSubtitle());
         aviso.setTipoPropiedad(navPlatPost.getRealEstateType());
         aviso.setTipoOperacion(navPlatPost.getOperationType());
@@ -41,5 +41,9 @@ public class AvisoAdapter {
 
     private List<Especificacion> mapItemSpecifics(NavPlatPost navPlatPost) {
         return new ArrayList<Especificacion>();
+    }
+
+    public NavPlatPost adapt(Aviso aviso) {
+        return new NavPlatPost();
     }
 }

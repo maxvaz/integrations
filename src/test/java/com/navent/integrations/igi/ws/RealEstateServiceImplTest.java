@@ -16,12 +16,13 @@ import java.util.Optional;
 import org.junit.Test;
 
 import com.dridco.inmuebles.ws.g7.model.Aviso;
-import com.navent.integrations.igi.model.repository.InMemoryProviderUserRepository;
-import com.navent.integrations.igi.model.repository.PostMappingRepository;
-import com.navent.integrations.igi.model.repository.ProviderUserRepository;
+import com.navent.integrations.igi.model.InMemoryProviderUserRepository;
+import com.navent.integrations.igi.model.PostMappingRepository;
+import com.navent.integrations.igi.model.ProviderUserRepository;
 import com.navent.integrations.igi.navplat.NavPlatClient;
 import com.navent.integrations.igi.navplat.NavPlatPost;
 import com.navent.integrations.igi.navplat.adapters.AvisoAdapter;
+import com.navent.integrations.igi.navplat.adapters.IgiProjectPostAdapter;
 
 public class RealEstateServiceImplTest {
 
@@ -30,15 +31,17 @@ public class RealEstateServiceImplTest {
     private final RealEstateServiceImpl realEstateServiceImpl;
     private final NavPlatClient navPlatCLient;
     private final AvisoAdapter avisoAdapter;
+    private final IgiProjectPostAdapter igiProjectPostAdapter;
 
     public RealEstateServiceImplTest() {
         postMappingRepository = mock(PostMappingRepository.class);
         providerUserRepository = mock(InMemoryProviderUserRepository.class);
         navPlatCLient = mock(NavPlatClient.class);
         avisoAdapter = mock(AvisoAdapter.class);
+        igiProjectPostAdapter = mock(IgiProjectPostAdapter.class);
 
-        realEstateServiceImpl = new RealEstateServiceImpl(navPlatCLient, avisoAdapter, postMappingRepository,
-                providerUserRepository);
+        realEstateServiceImpl = new RealEstateServiceImpl(navPlatCLient, avisoAdapter, igiProjectPostAdapter,
+                postMappingRepository, providerUserRepository);
     }
 
     @Test(expected = IllegalStateException.class)

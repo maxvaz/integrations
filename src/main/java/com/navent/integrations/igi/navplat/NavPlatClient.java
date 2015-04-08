@@ -12,7 +12,13 @@ public interface NavPlatClient {
     // - 2xx
     Optional<NavPlatPost> get(Long postId, Long userId);
 
-    // DELETE /post/{id}
+    // DELETE /post/{postId}
     void delete(Long postId);
+
+    // PUT /post/{postId}
+    void update(Long postId, NavPlatPost navPlatPost);
+
+    // POST /post?dryRun={dryRun}
+    Long post(NavPlatPost navPlatPost, Boolean dryRun);
 
 }

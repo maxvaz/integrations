@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.model.repository;
+package com.navent.integrations.igi.model;
 
 import static java.util.Optional.ofNullable;
 

@@ -1,4 +1,4 @@
-package com.navent.integrations.igi.model.repository;
+package com.navent.integrations.igi.model;
 
 public class PostMapping {
 

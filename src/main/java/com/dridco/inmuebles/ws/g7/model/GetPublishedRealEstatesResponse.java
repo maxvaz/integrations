@@ -23,16 +23,16 @@ public class GetPublishedRealEstatesResponse implements Serializable {
     @XmlElement(type = RealEstateIds.class, name = "realEstate")
     private List<RealEstateIds> realEstateIdsList;
 
+    public GetPublishedRealEstatesResponse() {
+        // required by org.apache.cxf
+    }
+
     public GetPublishedRealEstatesResponse(ConsultarPublicacionResponse publicacionResponse) {
         List<PublicationPair> publicaciones = publicacionResponse.getPublicaciones();
         this.realEstateIdsList = new ArrayList<>(publicaciones.size());
         for (PublicationPair publicationPair : publicaciones) {
             this.realEstateIdsList.add(new RealEstateIds(publicationPair));
         }
-    }
-
-    public GetPublishedRealEstatesResponse() {
-        // required by org.apache.cxf
     }
 
     public List<RealEstateIds> getRealEstateIdsList() {

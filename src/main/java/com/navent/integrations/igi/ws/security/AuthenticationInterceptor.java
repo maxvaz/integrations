@@ -8,18 +8,18 @@ import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.navent.integrations.igi.model.repository.PostProviderRepository;
-import com.navent.integrations.igi.model.repository.ProviderUserRepository;
+import com.navent.integrations.igi.model.PostProviderGroupRepository;
+import com.navent.integrations.igi.model.ProviderUserRepository;
 import com.navent.integrations.igi.ws.AuthenticationMessage;
 
 @Component
 public class AuthenticationInterceptor extends AbstractPhaseInterceptor<Message> {
 
-    private final PostProviderRepository postProviderRepository;
+    private final PostProviderGroupRepository postProviderRepository;
     private final ProviderUserRepository providerUserRepository;
 
     @Autowired
-    public AuthenticationInterceptor(PostProviderRepository postProviderRepository,
+    public AuthenticationInterceptor(PostProviderGroupRepository postProviderRepository,
             ProviderUserRepository providerUserRepository) {
         super(PRE_PROTOCOL);
         this.postProviderRepository = postProviderRepository;
@@ -30,14 +30,14 @@ public class AuthenticationInterceptor extends AbstractPhaseInterceptor<Message>
     public void handleMessage(Message nativeMessage) throws Fault {
         AuthenticationMessage message = new AuthenticationMessage(nativeMessage);
 
-        PostProviderGroup postProvider = postProviderRepository.get(message.getProviderId()).orElseThrow(
+        PostProviderGroup postProvider = postProviderRepository.findById(message.getProviderId()).orElseThrow(
                 InvalidAuthenticationException::new);
 
         if (!postProvider.checkPassword(message.getPassword())) {
             throw new InvalidAuthenticationException();
         }
 
-        providerUserRepository.get(postProvider.getId(), message.getUser()).orElseThrow(
+        providerUserRepository.get(message.getProviderId(), message.getUser()).orElseThrow(
                 InvalidAuthenticationException::new);
     }
 

@@ -1,5 +1,6 @@
 package com.navent.integrations.igi.ws;
 
+import static com.dridco.inmuebles.ws.g7.model.WebServiceIntegerResponse.created;
 import static com.dridco.inmuebles.ws.g7.model.WebServiceResponse.ok;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.StreamSupport.stream;
@@ -25,12 +26,13 @@ import com.dridco.inmuebles.ws.g7.model.WebServiceIntegerResponse;
 import com.dridco.inmuebles.ws.g7.model.WebServiceResponse;
 import com.dridco.inmuebles.ws.g7.model.Zona;
 import com.dridco.inmuebles.ws.g7.service.RealEstateService;
-import com.navent.integrations.igi.model.repository.PostMapping;
-import com.navent.integrations.igi.model.repository.PostMappingRepository;
-import com.navent.integrations.igi.model.repository.ProviderUserRepository;
+import com.navent.integrations.igi.model.PostMapping;
+import com.navent.integrations.igi.model.PostMappingRepository;
+import com.navent.integrations.igi.model.ProviderUserRepository;
 import com.navent.integrations.igi.navplat.NavPlatClient;
 import com.navent.integrations.igi.navplat.NavPlatPost;
 import com.navent.integrations.igi.navplat.adapters.AvisoAdapter;
+import com.navent.integrations.igi.navplat.adapters.IgiProjectPostAdapter;
 
 @WebService(endpointInterface = "com.dridco.inmuebles.ws.g7.service.RealEstateService", serviceName = "RealStateService")
 @Service("realEstateServiceImpl")
@@ -40,12 +42,15 @@ public class RealEstateServiceImpl implements RealEstateService {
     private final NavPlatClient navPlatClient;
     private final PostMappingRepository postMappingRepository;
     private final ProviderUserRepository providerUserRepository;
+    private final IgiProjectPostAdapter igiProjectPostAdapter;
 
     @Autowired
     public RealEstateServiceImpl(NavPlatClient navPlatClient, AvisoAdapter avisoAdapter,
-            PostMappingRepository postMappingRepository, ProviderUserRepository providerUserRepository) {
+            IgiProjectPostAdapter igiProjectPostAdapter, PostMappingRepository postMappingRepository,
+            ProviderUserRepository providerUserRepository) {
         this.navPlatClient = navPlatClient;
         this.avisoAdapter = avisoAdapter;
+        this.igiProjectPostAdapter = igiProjectPostAdapter;
         this.postMappingRepository = postMappingRepository;
         this.providerUserRepository = providerUserRepository;
     }
@@ -112,7 +117,7 @@ public class RealEstateServiceImpl implements RealEstateService {
     @Override
     public GetPublishedRealEstatesResponse getPublishedRealEstates(String providerUserId, Long providerId,
             String password) {
-        throw new UnsupportedOperationException();
+        return new GetPublishedRealEstatesResponse(consultarPublicaciones(providerUserId, providerId, password));
     }
 
     @Override
@@ -123,24 +128,32 @@ public class RealEstateServiceImpl implements RealEstateService {
 
     @Override
     public WebServiceResponse modificarAviso(String providerUserId, Long providerId, String password, Aviso aviso) {
-        throw new UnsupportedOperationException();
+        NavPlatPost navPlatPost = avisoAdapter.adapt(aviso);
+        navPlatClient.update(aviso.getIdAviso(), navPlatPost);
+        return ok();
     }
 
     @Override
     public WebServiceResponse publicar(String providerUserId, Long providerId, String password, Boolean dryRun,
             Aviso aviso) {
-        throw new UnsupportedOperationException();
+        NavPlatPost navPlatPost = avisoAdapter.adapt(aviso);
+        navPlatClient.post(navPlatPost, dryRun);
+        return ok();
     }
 
     @Override
     public WebServiceIntegerResponse publicarAviso(String providerUserId, Long providerId, String password, Aviso aviso) {
-        throw new UnsupportedOperationException();
+        NavPlatPost navPlatPost = avisoAdapter.adapt(aviso);
+        Long navPlatPostId = navPlatClient.post(navPlatPost, false);
+        return created(navPlatPostId);
     }
 
     @Override
     public WebServiceResponse publishProject(String providerUserId, Long providerId, String password,
             IgiProjectPost igiProjectPost) {
-        throw new UnsupportedOperationException();
+        NavPlatPost navPlatPost = igiProjectPostAdapter.adapt(igiProjectPost);
+        Long navPlatPostId = navPlatClient.post(navPlatPost, false);
+        return created(navPlatPostId);
     }
 
     private Function<PostMapping, PublicationPair> toPublicationPair() {

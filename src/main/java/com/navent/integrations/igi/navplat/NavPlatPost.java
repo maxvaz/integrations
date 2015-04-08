@@ -8,10 +8,6 @@ import com.dridco.inmuebles.ws.g7.model.Ubicacion;
 
 public class NavPlatPost {
 
-    public Long getId() {
-        return null;
-    }
-
     public Object getStateEnum() {
         return null;
     }
