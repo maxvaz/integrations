@@ -15,7 +15,7 @@ public class PostProviderGroup {
     @Id
     @NotNull
     private final Long id;
-    @Size(min = 4)
+    @Size(min = 4, max = 50)
     @NotNull
     private final String password;
     @OneToMany
