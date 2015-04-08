@@ -1,1 +1,6 @@
 spring.jpa.hibernate.ddl-auto: none
+
+logging.level.com.mangofactory.swagger: WARN
+logging.level.org.apache.cxf: WARN
+logging.level.org.hibernate: WARN
+logging.level.org.springframework: WARN
